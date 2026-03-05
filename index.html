@@ -106,7 +106,9 @@
           </div>
         </div>
       </nav>
-      <section class="container mx-auto flex flex-col-reverse items-center mt-[49px] gap-64 px-4 md:flex-row">
+      <section
+        class="container mx-auto flex flex-col-reverse items-center mt-[49px] gap-64 px-4 md:flex-row"
+      >
         <div class="content flex-1 text-center md:text-left">
           <div>
             <h3 class="text-5xl font-bold">
@@ -119,10 +121,22 @@
             </p>
           </div>
           <div>
-            <fieldset class="fieldset flex flex-col items-center md:items-start">
-              <input type="text" class="input mb-[20px]" placeholder="Enter Your Name" />
-              <input type="password" class="input mb-[20px]" placeholder="*******" />
-              <button class="btn btn-primary max-w-28 whitespace-nowrap">Get Started</button>
+            <fieldset
+              class="fieldset flex flex-col items-center md:items-start"
+            >
+              <input
+                type="text"
+                class="input mb-[20px]"
+                placeholder="Enter Your Name"
+              />
+              <input
+                type="password"
+                class="input mb-[20px]"
+                placeholder="*******"
+              />
+              <button class="btn btn-primary max-w-28 whitespace-nowrap">
+                Get Started
+              </button>
             </fieldset>
           </div>
         </div>
@@ -131,5 +145,13 @@
         </div>
       </section>
     </header>
+    <section class="container mx-auto px-4 text-center mt-[200px] mb-[40px]">
+      <h3 class="text-4xl font-bold mb-[35px]">
+        <span class="text-[#00BCFF]">Let's</span> Learn Vocabularies
+      </h3>
+      <div id="lesson-btn-container" class="flex gap-5 justify-center flex-wrap"></div>
+    </section>
+
+    <script src="script/index.js"></script>
   </body>
 </html>
