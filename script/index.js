@@ -8,6 +8,37 @@ const loadWords = (level) =>{
     const url = `https://openapi.programming-hero.com/api/level/${level}`;
     fetch(url).then((res) => res.json()).then((data) => showWords(data.data));
 }
+const loadWordDetails = async(wordId) =>{
+    const url = `https://openapi.programming-hero.com/api/word/${wordId}`;
+    const res = await fetch(url);
+    const details = await res.json();
+    showCardDetails(details.data);
+}
+const showCardDetails = (data) =>{
+    const detailModal = document.getElementById("details-container");
+    detailModal.innerHTML=`
+        <div class="modal-box">
+            <h3 class="text-4xl font-semibold mb-[32px]">${data.word} (<i class="fa-solid fa-microphone-lines"></i> :${data.pronunciation})</h3>
+            <p class="text-2xl
+            font-semibold mb-[47px]">Meaning</p>
+            <p class="text-2xl
+            font-medium mb-[32px] font-bangla">${data.meaning}</p>
+            <p class="text-2xl
+            font-semibold mb-[8px]">Example</p>
+            <p class="text-2xl mb-[32px]">${data.sentence}</p>
+            <p class="text-2xl
+            font-medium mb-[32px] font-bangla">সমার্থক শব্দ গুলো</p>
+            <p class="py-4">Press ESC key or click the button below to close</p>
+            <div class="modal-action">
+                <form method="dialog">
+                <!-- if there is a button in form, it will close the modal -->
+                <button class="btn">Close</button>
+                </form>
+            </div>
+        </div>
+    `;
+    detailModal.showModal();
+}
 const showLessons = (lessons) => {
     const lessonContainer = document.getElementById("lesson-btn-container");
     lessonContainer.innerHTML = "";
@@ -44,7 +75,7 @@ const showWords = (words) =>{
     words.forEach((word) => {
         const wordCard = document.createElement("div");
         wordCard.innerHTML = `
-            <div class="bg-white h-full rounded-xl text-center p-14 flex flex-col justify-between">
+            <div onclick="loadWordDetails(${word.id})" class="bg-white h-full rounded-xl text-center p-14 flex flex-col justify-between">
                 <h5 class="text-3xl font-bold mb-[24px]">${word.word ? word.word : "শব্দটি নেই"}</h5>
                 <p class="text-xl font-medium mb-[24px]">Meaning /Pronounciation</p>
                 <p class="text-3xl font-semibold font-bangla">"${word.meaning ? word.meaning : "অর্থ পাওয়া যায়নি"} / ${word.pronunciation ? word.pronunciation : "উচ্চারণ পাওয়া যায়নি"}"</p>
@@ -57,4 +88,5 @@ const showWords = (words) =>{
         wordContainer.append(wordCard);
     });
 }
+
 loadLessons();
