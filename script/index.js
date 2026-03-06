@@ -15,6 +15,9 @@ const loadWordDetails = async(wordId) =>{
     showCardDetails(details.data);
 }
 const showCardDetails = (data) =>{
+    const syns = data.synonyms.map(word =>{
+       return `<span class="bg-[#EDF7FF] px-5 py-2 rounded-md">${word}</span>`;
+    }).join("");
     const detailModal = document.getElementById("details-container");
     detailModal.innerHTML=`
         <div class="modal-box">
@@ -28,7 +31,7 @@ const showCardDetails = (data) =>{
             <p class="text-2xl mb-[32px]">${data.sentence}</p>
             <p class="text-2xl
             font-medium mb-[32px] font-bangla">সমার্থক শব্দ গুলো</p>
-            <p class="py-4">Press ESC key or click the button below to close</p>
+            <div class="flex flex-wrap gap-5">${syns}</div>
             <div class="modal-action">
                 <form method="dialog">
                 <!-- if there is a button in form, it will close the modal -->
